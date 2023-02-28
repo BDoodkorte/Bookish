@@ -1,0 +1,31 @@
+@{
+    ViewData["Title"] = "Add a Book Form";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Please add your book below:</h1>
+
+<form method="post" required action="/Book/AddBookForm">
+    <label>
+        Title:
+        <input type="text" required name="title"/>
+    </label>
+    <br>
+    <p></p>
+    <label>
+        Author:
+        <input type="text" required name="author"/>
+    </label>
+    <br>
+    <p></p>
+    <label>
+        Year:
+        <input type="number" required name="year"/>
+    </label>
+    <br>
+    <p></p>
+    <button type="submit">Submit</button>
+</form>
+
+    
+</div>
