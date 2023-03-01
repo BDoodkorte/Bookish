@@ -6,10 +6,10 @@ public class BookViewModel
     public string Author { get; set; }
     public int Year { get; set; }
 
-    public BookViewModel(string title, string author, int year)
-    {
-        Title = title;
-        Author = author;
-        Year = year;
-    }
+    // public BookViewModel(string title, string author, int year)
+    // {
+    //     Title = title;
+    //     Author = author;
+    //     Year = year;
+    // }
 }
