@@ -1,0 +1,38 @@
+@model BookDatabaseModel
+
+@{
+    ViewData["Title"] = "Add a Book Form";
+}
+
+
+<div class="text-center">
+    <h1 class="display-4">Please edit your book below:</h1>
+
+    <form method="post" required asp-controller="Book" asp-action="AddBookForm">
+        <label>
+            Title:
+            <input type="text" required name="title" />
+        </label>
+        <br>
+        <p></p>
+        <label>
+            Author:
+            <input type="text" required name="author" />
+        </label>
+        <br>
+        <p></p>
+        <label>
+            Year:
+            <input type="number" required name="year" />
+        </label>
+        <label>
+            Id:
+            <input type="number" required name="id" />
+        </label>
+           <br>
+        <p></p>
+        <button type="submit">Submit Changes</button>
+    </form>
+
+
+</div>

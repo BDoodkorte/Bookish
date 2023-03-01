@@ -27,7 +27,8 @@ public class BookController : Controller
 
         // pull entries from database and display in a list. 
         var context = new BookishContext();
-        var bookList = context.Books.ToList();
+        var bookList = context.Books.OrderBy(order => order.Title).ToList();
+        // var sortedBookList = bookList.
 
         // var form = new BookForm();
         // BookForm.AddBookDatabase();
@@ -53,6 +54,33 @@ public class BookController : Controller
             // convert from bookviewmodel to bookdatabasemodel
             BookDatabaseModel addedBook = new BookDatabaseModel(arg.Title, arg.Author, arg.Year);
             context.Books.Add(addedBook);
+            context.SaveChanges();
+
+
+            return RedirectToAction("Book");
+        }
+    }
+
+    //incomplete
+    public IActionResult EditBookForm()
+    {
+        return View();
+    }
+
+    [HttpPost]
+    public IActionResult EditBookForm([FromForm] BookDatabaseModel arg) //potentially the incorrect type
+    {
+
+
+        using (var context = new BookishContext())
+        {
+
+            //load old data
+            var std = context.Books.Where(s => s.Id == arg.Id).First(); // call upon arg.id
+            std.Title = arg.Title;
+            std.Author = arg.Author;
+            std.Year = arg.Year;
+            std.Id = arg.Id;
             context.SaveChanges();
 
 

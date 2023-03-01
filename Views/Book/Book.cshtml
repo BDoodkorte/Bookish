@@ -7,9 +7,13 @@
 <div class="text-center">
     <h1 class="display-4">List of Books</h1>
 
-    @foreach(var i in Model )
+    @foreach (var i in Model)
     {
-        <p>@i.Title, @i.Author, @i.Year</p>
+        <p>@i.Title, @i.Author, @i.Year,
+            <a href="~/Book/EditBookForm?id=@i.Id">EDIT</a>
+            <a href="">DELETE</a>
+
+        </p>
     }
-    
+
 </div>
