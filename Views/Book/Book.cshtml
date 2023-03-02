@@ -9,7 +9,7 @@
 
     @foreach (var i in Model)
     {
-        <p>@i.Title, @i.Author, @i.Year,
+        <p><a href="~/Book/BookProfile?id=@i.Id">@i.Title</a>, @i.Author, @i.Year,
             <a href="~/Book/EditBookForm?id=@i.Id">EDIT</a>
             <a href="">DELETE</a>
 

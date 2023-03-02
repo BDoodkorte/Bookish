@@ -1,0 +1,11 @@
+@using Microsoft.AspNetCore.Mvc
+
+@model List<CopyDatabaseModel>
+
+@{
+    ViewData["Title"] = "Profile";
+}
+<div class="text-center">
+    <h1 class="display-4">List of Books</h1>
+    <p>There are @Model.Count copies of .Title in this library</p>
+</div>

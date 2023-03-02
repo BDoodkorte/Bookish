@@ -1,0 +1,25 @@
+@model List<BookDatabaseModel>
+    
+@{
+    ViewData["Title"] = "Add a Copy Form";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Please add a copy below:</h1>
+    
+     @foreach (var i in Model)
+    {
+        <p>@i.Id - @i.Title </p>
+    }
+
+<form method="post" required asp-controller="Book" asp-action="AddCopyForm">
+    <label>
+        CopyId:
+        <input type="number" required name="bookId"/>
+    </label>
+    <br>
+
+    <p></p>
+    <button type="submit">Submit</button>
+</form>    
+</div> 
