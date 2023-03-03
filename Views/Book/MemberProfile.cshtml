@@ -7,5 +7,19 @@
 }
 <div class="text-center">
     <h1 class="display-4">@Model.Member[0].FirstName @Model.Member[0].LastName </h1>
-    <p>This user has checked out xx books.</p>
+    <p>This user has checked out @Model.Copies.Count books.</p>
+    <p>This user has checked out the following books:</p>
+
+    @foreach (var i in Model.Copies)
+    {
+        foreach (var j in Model.Book)
+        {
+            if (j.Id == i.BookId)
+            {
+
+                <p>@j.Title, @j.Author, @j.Year </p>
+            }
+        }
+    }
+
 </div>

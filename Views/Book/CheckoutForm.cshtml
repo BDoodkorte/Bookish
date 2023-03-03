@@ -1,0 +1,25 @@
+@model CopyDatabaseModel
+
+@{
+    ViewData["Title"] = "Ceckout a Book Form";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Please checkout your book below:</h1>
+
+    <form method="post" required asp-controller="Book" asp-action="CheckoutForm">
+        <label>
+            Member Id:
+            <input type="text" required name="memberId" />
+        </label>
+        <br>
+        <p></p>
+        <label>
+            Book Id:
+            <input type="text" required name="bookId" />
+        </label>
+        <br>
+        <p></p>
+        <button type="submit">Submit Changes</button>
+    </form>
+</div>

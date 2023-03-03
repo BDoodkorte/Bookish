@@ -27,12 +27,14 @@ public class BookController : Controller
 
     // DISPLAY PROFILE OF BOOKS IN DATABASE
     [HttpGet]
-    public IActionResult BookProfile(int id){
-    BookProfileModel profile = new BookProfileModel();
-        
-   var context = new BookishContext();
-   profile.Copies = context.Copies.Where(s => s.BookId == id).ToList();
-  profile.Book = context.Books.Where(s => s.Id == id).ToList();
+    public IActionResult BookProfile(int id)
+    {
+        BookProfileModel profile = new BookProfileModel();
+
+        var context = new BookishContext();
+        profile.Copies = context.Copies.Where(s => s.BookId == id).ToList();
+        profile.Book = context.Books.Where(s => s.Id == id).ToList();
+        profile.Member = context.Members.ToList();
 
         return View(profile);
     }
@@ -87,14 +89,14 @@ public class BookController : Controller
         return RedirectToAction("Book");
     }
 
-     // DISPLAY  MEMBER LIST
+    // DISPLAY  MEMBER LIST
     public IActionResult Member()
     {
         var context = new BookishContext();
         var memberList = context.Members.OrderBy(order => order.Id).ToList();
         return View(memberList);
     }
-     // DISPLAY ADD MEMBER FORM
+    // DISPLAY ADD MEMBER FORM
     public IActionResult AddMemberForm()
     {
         return View();
@@ -108,10 +110,10 @@ public class BookController : Controller
         // ValidateFormData.ValidateData(arg);
 
         AddMemberFromForm.AddMember(arg);
-        return RedirectToAction("Member");
+        return RedirectToAction("Book");
     }
 
- // DISPLAY EDIT MEMBER FORM
+    // DISPLAY EDIT MEMBER FORM
     public IActionResult EditMemberForm()
     {
         return View();
@@ -126,17 +128,33 @@ public class BookController : Controller
         return RedirectToAction("Member");
     }
 
-        // DISPLAY PROFILE OF MEMBERS IN DATABASE
+    // DISPLAY PROFILE OF MEMBERS IN DATABASE
     [HttpGet]
-    public IActionResult MemberProfile(int id){
-    MemberProfileModel profile = new MemberProfileModel();
-        
-   var context = new BookishContext();
-//    profile.Copies = context.Copies.Where(s => s.BookId == id).ToList();
-  profile.Member = context.Members.Where(s => s.Id == id).ToList();
+    public IActionResult MemberProfile(int id)
+    {
+        MemberProfileModel profile = new MemberProfileModel();
 
+        var context = new BookishContext();
+        //    profile.Copies = context.Copies.Where(s => s.BookId == id).ToList();
+        profile.Member = context.Members.Where(s => s.Id == id).ToList();
+        profile.Copies = context.Copies.Where(s => s.MemberId == id).ToList();
+        profile.Book = context.Books.ToList();
         return View(profile);
     }
 
+    // DISPLAY CHECKOUT FORM
+    public IActionResult CheckoutForm()
+    {
+        return View();
+    }
+
+    // TAKE CHECKOUT DATA AND EDIT COPIES IN DATABASE
+    [HttpPost]
+    public IActionResult CheckoutForm([FromForm] CopyDatabaseModel arg)
+    {
+        // ValidateFormData.ValidateMemberDatabaseData(arg);
+        CheckoutFromForm.CheckoutBook(arg);
+        return RedirectToAction("Member");
+    }
 
 }

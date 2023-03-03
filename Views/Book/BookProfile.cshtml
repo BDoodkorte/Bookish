@@ -8,4 +8,16 @@
 <div class="text-center">
     <h1 class="display-4">@Model.Book[0].Title - @Model.Book[0].Author</h1>
     <p>There are @Model.Copies.Count copies of @Model.Book[0].Title in this library</p>
+    <p>The following users have checkout this book:</p>
+    @foreach (var i in Model.Copies)
+    {
+        foreach (var j in Model.Member)
+        {
+            if (j.Id == i.MemberId)
+            {
+
+                <p>@j.FirstName @j.LastName - @j.Email </p>
+            }
+        }
+    }
 </div>
