@@ -28,14 +28,13 @@ public class BookController : Controller
     // DISPLAY PROFILE OF BOOKS IN DATABASE
     [HttpGet]
     public IActionResult BookProfile(int id){
-
-
+    BookProfileModel profile = new BookProfileModel();
+        
    var context = new BookishContext();
-   var copyList = context.Copies.Where(s => s.BookId == id).ToList();
+   profile.Copies = context.Copies.Where(s => s.BookId == id).ToList();
+  profile.Book = context.Books.Where(s => s.Id == id).ToList();
 
-        //for loop that goes through copies database and counts the amount copies
-        // if i.bookId = arg.bookId copyAmount++
-        return View(copyList);
+        return View(profile);
     }
 
     // DISPLAY ADD BOOK FORM
@@ -87,5 +86,57 @@ public class BookController : Controller
         AddCopyFromForm.AddCopy(arg);
         return RedirectToAction("Book");
     }
+
+     // DISPLAY  MEMBER LIST
+    public IActionResult Member()
+    {
+        var context = new BookishContext();
+        var memberList = context.Members.OrderBy(order => order.Id).ToList();
+        return View(memberList);
+    }
+     // DISPLAY ADD MEMBER FORM
+    public IActionResult AddMemberForm()
+    {
+        return View();
+    }
+
+    // TAKE ADD MEMBER FORM DATA AND ADD MEMBER TO DATABASE
+    [HttpPost]
+    [ActionName("AddMemberForm")]
+    public IActionResult AddMemberForm([FromForm] MemberViewModel arg)
+    {
+        // ValidateFormData.ValidateData(arg);
+
+        AddMemberFromForm.AddMember(arg);
+        return RedirectToAction("Member");
+    }
+
+ // DISPLAY EDIT MEMBER FORM
+    public IActionResult EditMemberForm()
+    {
+        return View();
+    }
+
+    // TAKE EDIT MEMBER DATA AND EDIT MEMBER IN DATABASE
+    [HttpPost]
+    public IActionResult EditMemberForm([FromForm] MemberDatabaseModel arg) //potentially the incorrect type
+    {
+        ValidateFormData.ValidateMemberDatabaseData(arg);
+        EditMemberFromForm.EditMember(arg);
+        return RedirectToAction("Member");
+    }
+
+        // DISPLAY PROFILE OF MEMBERS IN DATABASE
+    [HttpGet]
+    public IActionResult MemberProfile(int id){
+    MemberProfileModel profile = new MemberProfileModel();
+        
+   var context = new BookishContext();
+//    profile.Copies = context.Copies.Where(s => s.BookId == id).ToList();
+  profile.Member = context.Members.Where(s => s.Id == id).ToList();
+
+        return View(profile);
+    }
+
 
 }

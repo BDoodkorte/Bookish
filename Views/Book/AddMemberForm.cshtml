@@ -1,0 +1,37 @@
+@{
+    ViewData["Title"] = "Add a Member Form";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Please add a member below:</h1>
+
+    <form method="post" required asp-controller="Book" asp-action="AddMemberForm">
+        <label>
+            First Name:
+            <input type="text" required name="firstName" />
+        </label>
+        <br>
+        <p></p>
+        <label>
+            Last Name:
+            <input type="text" required name="lastName" />
+        </label>
+        <br>
+        <p></p>
+        <label>
+            Email:
+            <input type="email" required name="email" />
+        </label>
+        <br>
+        <p></p>
+        <label>
+            Contact Number:
+            <input type="text" required name="contactNumber" />
+        </label>
+        <br>
+        <p></p>
+        <button type="submit">Submit</button>
+    </form>
+
+
+</div>

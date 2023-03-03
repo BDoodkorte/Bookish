@@ -1,11 +1,11 @@
 @using Microsoft.AspNetCore.Mvc
 
-@model List<CopyDatabaseModel>
+@model Bookish.Models.BookProfileModel
 
 @{
     ViewData["Title"] = "Profile";
 }
 <div class="text-center">
-    <h1 class="display-4">List of Books</h1>
-    <p>There are @Model.Count copies of .Title in this library</p>
+    <h1 class="display-4">@Model.Book[0].Title - @Model.Book[0].Author</h1>
+    <p>There are @Model.Copies.Count copies of @Model.Book[0].Title in this library</p>
 </div>

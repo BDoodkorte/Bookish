@@ -1,0 +1,11 @@
+@using Microsoft.AspNetCore.Mvc
+
+@model Bookish.Models.MemberProfileModel
+
+@{
+    ViewData["Title"] = "Profile";
+}
+<div class="text-center">
+    <h1 class="display-4">@Model.Member[0].FirstName @Model.Member[0].LastName </h1>
+    <p>This user has checked out xx books.</p>
+</div>

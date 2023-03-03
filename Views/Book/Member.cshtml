@@ -1,0 +1,17 @@
+@model List<MemberDatabaseModel>
+
+@{
+    ViewData["Title"] = "MemberList";
+}
+
+<div class="text-center">
+    <h1 class="display-4">List of Members</h1>
+
+    @foreach (var i in Model)
+    {
+        <p><a href="~/Book/MemberProfile?id=@i.Id">@i.FirstName @i.LastName </a>, @i.Email, @i.ContactNumber
+            <a href="~/Book/EditMemberForm?id=@i.Id">EDIT</a>
+        </p>
+    }
+
+</div>

@@ -49,8 +49,30 @@ public static void ValidateDatabaseData(BookDatabaseModel arg)
     {
         throw new ArgumentOutOfRangeException ("Year entered must be between 1500 and 2023.");
     }
-    
+}
 
+public static void ValidateMemberDatabaseData(MemberDatabaseModel arg)
+{
+    // Validate Title is a string
+
+    if(String.IsNullOrEmpty(arg.FirstName) || String.IsNullOrWhiteSpace(arg.FirstName)) 
+    {
+        throw new ArgumentOutOfRangeException ("First Name is invalid.");
+    }
+    // Validate Author is a string
+    if(String.IsNullOrEmpty(arg.LastName) || String.IsNullOrWhiteSpace(arg.LastName))
+    {
+        throw new ArgumentOutOfRangeException ("Last name is invalid.");
+    }
+        if(String.IsNullOrEmpty(arg.Email) || String.IsNullOrWhiteSpace(arg.Email))
+    {
+        throw new ArgumentOutOfRangeException ("Last name is invalid.");
+    }
+        if(String.IsNullOrEmpty(arg.ContactNumber) || String.IsNullOrWhiteSpace(arg.ContactNumber))
+    {
+        throw new ArgumentOutOfRangeException ("Last name is invalid.");
+    }
 
 }
+
 }
